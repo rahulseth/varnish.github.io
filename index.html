@@ -1,1 +1,250 @@
-hello
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Varnish Cache</title>
+
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/freelancer.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#page-top">Varnish Cache</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#content">Content</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#reference">Reference</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <img class="img-responsive" src="img/profile.gif" alt="">
+                    <div class="intro-text">
+                        <span class="name">Rahul Seth</span>
+                        <hr class="star-light">
+                        <span class="skills">Varnish Cache in Drupal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Portfolio Grid Section -->
+    <section id="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h4>Introduction</h4>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row"><p>Varnish Cache is a modern reverse proxy cache software package. It has been built from the ground up to be a dedicated reverse proxy cache so it doesn't have legacy functionality and code, making it blazing fast. It is supported on Linux and FreeBSD and is included in most popular distributions.</p>
+
+<p>It can be used to serve static content, such as images, scripts, or stylesheets, because Varnish is blazingly fast and copes with traffic much better than Apache does. It can also be used to cache quasi-static content; that is, content that is generated dynamically by the application (using the database and taking a considerable amount of time to prepare), but that stays unchanged for a period of time, making the content suitable for caching.</p>
+
+<p>For example, when an article on the website gets published, it is rarely updated. It is then completely unnecessary to engage all the processing bits and pieces of Drupal to compute and show the same article every time it is requested. It will be perfectly fine for Varnish to remember serve the same page again without contacting Drupal at all. This makes it easy for Varnish to serve the same content to 10, 100, or even 1000 people at once - since serving a cached page requires very little processing power.</p>
+
+<p>In most scenarios using Varnish makes almost any website unbelievably faster. It also make it easier to cope with sudden spikes of interest (for example, when a very popular article gets published). All this translates to happier visitors who get their content delivered faster and more reliably.</p>
+            </div>
+						<div class="row">
+						<div class="col-lg-12 text-center">
+						 <h4>Drupal Modules that interact with Varnish</h4>
+						  <hr class="star-primary">
+						</div>
+						<p>
+						Varnish Module integrates Drupal to Varnish over the Varnish administration interface. It can purge URLs from the proxy cache using regular expressions and can display varnish statistics.</p>
+              <p>Purge Module just implements purging over HTTP together with the Expire Module
+						</p>
+        </div>
+				<div class="col-lg-12 text-center">
+						 <h4>Configuring Varnish for Drupal</h4>
+						  <hr class="star-primary">
+						</div>
+				<p><b>Step 1 — Reconfiguring Apache</b>
+By default, Apache listens on port 80. This lets Apache handle web requests like a browser URL request for http://example.com. To use Varnish, it must be able to handle those requests instead. First we have to tell Apache not to handle requests on port 80 anymore.</p>
+
+<p><b>Step 2 — Installing Varnish</b>
+Both Debian and Ubuntu have system packages with Varnish, but we recommend using prebuilt packages made by the authors of Varnish. It will ensure that Varnish is up to date, which will not be true for the system packages.
+
+First, make sure the apt-transport-https package is installed, which allows the system to install packages over a secure connection</p>
+				
+				
+				
+				<p><b>Step 3 — Making Varnish Listen on Port 80</b>
+By default Varnish listens on port 6081. We will make Varnish listen on port 80 instead, taking all the incoming requests from our web users, just like Apache did before.</p>
+    
+		<p><b>Step 4 — Configuring Varnish for Drupal</b>
+		We will add several rules that accomplish the following:
+
+Allow Varnish to serve stale (old) cache content in case of a Drupal failure. It will make the site partially available even if Drupal fails to respond
+Ensure that no administrative pages are cached at all, forcing Varnish to skip the cache for certain URLs
+Ensure caching of static files – images, scripts, stylesheets
+Strip all cookies other than several cookies needed by Drupal to work properly, including user login features</p>
+
+
+<p><b>Step 5 — Restarting Varnish</b>
+The Varnish server should restart without errors.</p>
+
+<p><b>Step 6 — Enabling Cache in Drupal</b>
+
+By default Drupal has its cache mechanisms disabled. This results in headers being sent to Varnish which force pages not to be cached at all. So, a disabled Drupal cache will automatically block Varnish from helping us speed up the site.</p>
+		
+		<p><b>Step 7 — Verifying Varnish Configuration</b>
+		To make sure Varnish is caching the site, we can use the simple tool called Is Varnish Working?. Enter your website's address in the form. You should see a response like the one below:</p>
+		</section>
+
+    <!-- About Section -->
+    <section class="success" id="reference">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Reference Link</h2>
+                    <hr class="star-light">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-2">
+                    <p>https://www.drupal.org/docs/7/managing-site-performance-and-scalability</p>
+                </div>
+                <div class="col-lg-4">
+                    <p>Areas of Expertise:</p>
+                    <ul>
+                    <li>https://www.drupal.org/docs/7/managing-site-performance-and-scalability</li>
+                    <li>https://www.drupal.org/docs/7/caching-to-improve-performance/varnish-cache</li>
+                    <li>https://www.digitalocean.com/community/tutorials/how-to-speed-up-your-drupal-7-website-with-varnish-4-on-ubuntu-14-04-and-debian-7</li>
+                    <li>http://varnish-cache.org/</li>
+                    </ul>
+                </div>
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <a href="https://www.drupal.org/u/rahul-seth" class="btn btn-lg btn-outline">
+                        <i class="fa fa-drupal"></i> Drupal.org Profile
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-4">
+                        <h3>Location</h3>
+                        <p>Sector-21, Gurgaon<br>Haryana-122016 (India)</p>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>Around the Web</h3>
+                        <ul class="list-inline">
+                            <li>
+                                <a href="https://www.facebook.com/rahulashokseth" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://plus.google.com/101349239034381788073" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/rahulashokseth" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/in/rahulashokseth" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-col col-md-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Copyright &copy; Rahul Ashok Seth 2016
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll visible-xs visible-sm">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/cbpAnimatedHeader.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/freelancer.js"></script>
+
+</body>
+
+</html>
